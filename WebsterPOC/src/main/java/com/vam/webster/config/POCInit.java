@@ -28,8 +28,8 @@ public class POCInit implements CommandLineRunner{
 
 	public static final String MAILBOX_TOPIC = "inboxTopic";
 	
-	 @Autowired
-	 private Sender sender;
+	@Autowired
+	private Sender sender;
 	 
 	public static void main(String[] args) {
 		SpringApplication.run(POCInit.class, args);
