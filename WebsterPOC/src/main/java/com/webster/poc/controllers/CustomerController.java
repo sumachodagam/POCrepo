@@ -1,4 +1,4 @@
-package com.vam.webster.controllers;
+package com.webster.poc.controllers;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vam.webster.pojos.Customer;
-import com.vam.webster.pojos.CustomerStatus;
-import com.vam.webster.service.ICustomerService;
+import com.webster.poc.pojos.Customer;
+import com.webster.poc.pojos.CustomerStatus;
+import com.webster.poc.service.ICustomerService;
 
 @RestController
 public class CustomerController {

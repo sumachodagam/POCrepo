@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:com.vam.webster.config.POCInit</config>
+		<config>java:com.webster.poc.config.POCInit</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

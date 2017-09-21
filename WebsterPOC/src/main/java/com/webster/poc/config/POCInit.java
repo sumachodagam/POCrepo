@@ -1,4 +1,4 @@
-package com.vam.webster.config;
+package com.webster.poc.config;
 
 import javax.jms.ConnectionFactory;
 
@@ -17,13 +17,13 @@ import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.vam.webster.pojos.CustomerStatus;
+import com.webster.poc.pojos.CustomerStatus;
 
 
 @SpringBootApplication
 @EnableWebMvc
-@ComponentScan(basePackages="com.vam.webster.*")
-@EntityScan(basePackages="com.vam.webster.pojos")
+@ComponentScan(basePackages="com.webster.poc.*")
+@EntityScan(basePackages="com.webster.poc.pojos")
 public class POCInit implements CommandLineRunner{
 
 	public static final String MAILBOX_TOPIC = "inboxTopic";

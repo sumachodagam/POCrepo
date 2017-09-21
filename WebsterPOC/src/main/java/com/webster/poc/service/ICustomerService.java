@@ -1,9 +1,9 @@
-package com.vam.webster.service;
+package com.webster.poc.service;
 
 import java.util.List;
 
-import com.vam.webster.pojos.Customer;
-import com.vam.webster.pojos.CustomerStatus;
+import com.webster.poc.pojos.Customer;
+import com.webster.poc.pojos.CustomerStatus;
 
 public interface ICustomerService {
 

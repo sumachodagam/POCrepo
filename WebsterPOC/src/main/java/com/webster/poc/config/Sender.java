@@ -1,11 +1,11 @@
-package com.vam.webster.config;
+package com.webster.poc.config;
 
 import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
-import com.vam.webster.pojos.CustomerStatus;
+import com.webster.poc.pojos.CustomerStatus;
 
 @Component
 public class Sender {

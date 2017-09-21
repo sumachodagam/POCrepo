@@ -1,4 +1,4 @@
-package com.vam.webster.controllers;
+package com.webster.poc.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

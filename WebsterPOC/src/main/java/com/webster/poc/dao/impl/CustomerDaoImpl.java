@@ -1,4 +1,4 @@
-package com.vam.webster.dao.impl;
+package com.webster.poc.dao.impl;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.vam.webster.dao.ICustomerDao;
-import com.vam.webster.pojos.Customer;
+import com.webster.poc.dao.ICustomerDao;
+import com.webster.poc.pojos.Customer;
 
 @Repository
 public class CustomerDaoImpl implements ICustomerDao {

@@ -1,4 +1,4 @@
-package com.vam.webster.service.impl;
+package com.webster.poc.service.impl;
 
 import java.util.List;
 
@@ -7,11 +7,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vam.webster.config.Receiver;
-import com.vam.webster.dao.ICustomerDao;
-import com.vam.webster.pojos.Customer;
-import com.vam.webster.pojos.CustomerStatus;
-import com.vam.webster.service.ICustomerService;
+import com.webster.poc.config.Receiver;
+import com.webster.poc.dao.ICustomerDao;
+import com.webster.poc.pojos.Customer;
+import com.webster.poc.pojos.CustomerStatus;
+import com.webster.poc.service.ICustomerService;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {

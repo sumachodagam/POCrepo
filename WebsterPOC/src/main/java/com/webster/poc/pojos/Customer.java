@@ -1,4 +1,4 @@
-package com.vam.webster.pojos;
+package com.webster.poc.pojos;
 
 import java.io.Serializable;
 

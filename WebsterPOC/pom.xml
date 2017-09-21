@@ -57,11 +57,6 @@
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
 	    </dependency>	
-	    <!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>  -->
 		<!-- spring-boot -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -77,47 +72,22 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-            <!-- <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
-                <executions>
-                    <execution>
-                        <id>make-zip</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>
-                                single
-                            </goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <descriptors>
-                        <descriptor>src/main/docker/assembly.xml</descriptor>
-                    </descriptors>
-                </configuration>
-            </plugin> -->
-			<!-- <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.15.3</version>
-                <configuration>
-                    <dockerHost>http://127.0.0.1:2375</dockerHost>
-                    <verbose>true</verbose> 
-                    <images>
-                        <image>
-                            <name>vam/websterpoc</name>
-                            <build>
-                                <dockerFile>Dockerfile</dockerFile>
-                                <assembly>
-                                    <descriptorRef>artifact</descriptorRef>
-                                </assembly>
-                            </build>
-                        </image>
-                    </images>
-                </configuration>
-            </plugin> -->
+      <plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+                <skipDockerBuild>false</skipDockerBuild>
+                <imageName>${docker.image.prefix}</imageName>
+                <dockerDirectory>${basedir}/src/main/docker</dockerDirectory>
+                <resources>
+                    <resource>
+                        <targetPath>/</targetPath>
+                        <directory>${project.build.directory}</directory>
+                        <include>${project.build.finalName}.jar</include>
+                    </resource>
+                </resources>
+            </configuration>
+        </plugin>       
     </plugins>
   </build>
 </project>

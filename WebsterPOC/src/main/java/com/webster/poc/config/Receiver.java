@@ -1,6 +1,6 @@
-package com.vam.webster.config;
+package com.webster.poc.config;
 
-import static com.vam.webster.config.POCInit.MAILBOX_TOPIC;
+import static com.webster.poc.config.POCInit.MAILBOX_TOPIC;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
-import com.vam.webster.pojos.CustomerStatus;;
+import com.webster.poc.pojos.CustomerStatus;;
 
 @Component
 public class Receiver {

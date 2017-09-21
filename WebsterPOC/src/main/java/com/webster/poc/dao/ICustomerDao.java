@@ -1,8 +1,8 @@
-package com.vam.webster.dao;
+package com.webster.poc.dao;
 
 import java.util.List;
 
-import com.vam.webster.pojos.Customer;
+import com.webster.poc.pojos.Customer;
 
 public interface ICustomerDao {
 
