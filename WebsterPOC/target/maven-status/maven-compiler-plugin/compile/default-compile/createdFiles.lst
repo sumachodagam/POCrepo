@@ -1,0 +1,11 @@
+com\vam\webster\dao\impl\CustomerDaoImpl.class
+com\vam\webster\config\Receiver.class
+com\vam\webster\service\ICustomerService.class
+com\vam\webster\pojos\CustomerStatus.class
+com\vam\webster\controllers\HelloWoldController.class
+com\vam\webster\pojos\Customer.class
+com\vam\webster\dao\ICustomerDao.class
+com\vam\webster\controllers\CustomerController.class
+com\vam\webster\service\impl\CustomerServiceImpl.class
+com\vam\webster\config\Sender.class
+com\vam\webster\config\POCInit.class
