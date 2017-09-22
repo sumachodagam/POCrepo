@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <zip basedir="C:\Users\Administrator\git\POCrepo1\WebsterPOC/target" destfile="C:\Users\Administrator\git\POCrepo1\WebsterPOC/target/app.zip" includes="Dockerfile, Dockerrun.aws.json, WebsterPOC-0.0.1-SNAPSHOT.jar"/>
+</target>
+</project>
