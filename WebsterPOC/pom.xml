@@ -28,7 +28,6 @@
 
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
-		<docker.image.prefix>WebsterDocker</docker.image.prefix>
 	</properties>
 	
 	<dependencies>
@@ -53,18 +52,17 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-jpa</artifactId>
 	    </dependency>	
-	    <dependency>
+	    <!-- <dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
-	    </dependency>	
-		<!-- spring-boot -->
-		<dependency>
+	    </dependency> -->
+	    <dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-		</dependency>
+		</dependency>	
+		<!-- spring-boot -->
 	</dependencies>	
 	<build>
-		<finalName>webster-docker-demo</finalName>
     <plugins>
     	
       <!-- spring-boot-maven-plugin -->
@@ -73,21 +71,63 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
       <plugin>
-            <groupId>com.spotify</groupId>
-            <artifactId>docker-maven-plugin</artifactId>
-            <configuration>
-                <skipDockerBuild>false</skipDockerBuild>
-                <imageName>${docker.image.prefix}</imageName>
-                <dockerDirectory>${basedir}/src/main/docker</dockerDirectory>
-                <resources>
-                    <resource>
-                        <targetPath>/</targetPath>
-                        <directory>${project.build.directory}</directory>
-                        <include>${project.build.finalName}.jar</include>
-                    </resource>
-                </resources>
-            </configuration>
-        </plugin>       
+              <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/docker</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>rename-file</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>rename</goal>
+                        </goals>
+                        <configuration>
+                            <sourceFile>${basedir}/target/Dockerfile.txt</sourceFile>
+                            <destinationFile>${basedir}/target/Dockerfile</destinationFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>zip-files</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <zip destfile="${basedir}/target/app.zip" basedir="${basedir}/target" includes="Dockerfile, Dockerrun.aws.json, ${project.artifactId}-${project.version}.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>     
     </plugins>
   </build>
 </project>
