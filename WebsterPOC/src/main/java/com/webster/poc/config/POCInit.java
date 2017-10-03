@@ -1,8 +1,10 @@
 package com.webster.poc.config;
 
 import javax.jms.ConnectionFactory;
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +12,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
@@ -28,9 +31,23 @@ public class POCInit implements CommandLineRunner{
 
 	public static final String MAILBOX_TOPIC = "inboxTopic";
 	
+	
 	@Autowired
 	private Sender sender;
 	 
+	@Value("${spring.jpa.properties.hibernate.dialect}")
+	private String dbDriverClassName;
+
+	@Value("${spring.datasource.url}")
+	private String dbUrl;
+
+	@Value("${spring.datasource.username}")
+	private String dbUsername;
+
+	@Value("${spring.datasource.password}")
+	private String dbPassword;
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(POCInit.class, args);
     }
@@ -54,6 +71,15 @@ public class POCInit implements CommandLineRunner{
         return converter;
     }
     
+    @Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName(dbDriverClassName);
+		dataSource.setUrl(dbUrl);
+		dataSource.setUsername(dbUsername);
+		dataSource.setPassword(dbPassword);
+		return dataSource;
+	}
     @Override
     public void run(String... arg0) throws Exception {
         Thread.sleep(5000); // wait for subscriptions, unless they are durable

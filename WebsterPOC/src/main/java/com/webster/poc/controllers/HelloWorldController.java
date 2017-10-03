@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-public class HelloWoldController {
+public class HelloWorldController {
 
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String welcome(@RequestParam String name) {
