@@ -18,5 +18,5 @@ services:
       - DB_HOST=demo-mysql
       - DB_USER=dbuser
       - DB_PASSWORD=dbp4ss
-      - DB_NAME=demo
+      - DB_NAME=webster_poc
       - DB_PORT=3306
