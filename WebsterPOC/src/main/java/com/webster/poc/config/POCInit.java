@@ -38,13 +38,19 @@ public class POCInit implements CommandLineRunner{
 	@Value("${spring.jpa.properties.hibernate.dialect}")
 	private String dbDriverClassName;
 
-	@Value("${spring.datasource.url}")
+	@Value("${DB_URL}")
 	private String dbUrl;
+	
+	@Value("${DB_PORT}")
+	private String dbPort;
+	
+	@Value("${DB_SCHEMA}")
+	private String dbSchema;
 
-	@Value("${spring.datasource.username}")
+	@Value("${DB_USER}")
 	private String dbUsername;
 
-	@Value("${spring.datasource.password}")
+	@Value("${DB.PASSWORD}")
 	private String dbPassword;
 	
 	
@@ -75,7 +81,7 @@ public class POCInit implements CommandLineRunner{
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(dbDriverClassName);
-		dataSource.setUrl(dbUrl);
+		dataSource.setUrl("jdbc:mysql://"+dbUrl+":"+dbPort+"/"+dbSchema);
 		dataSource.setUsername(dbUsername);
 		dataSource.setPassword(dbPassword);
 		return dataSource;

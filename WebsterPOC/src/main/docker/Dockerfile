@@ -1,6 +1,6 @@
 FROM java:8
-
-ADD WebsterPOC-0.0.1-SNAPSHOT.jar /opt/WebsterPOC/
-EXPOSE 8080
-WORKDIR /opt/WebsterPOC/
-CMD ["java", "-Xms512m", "-Xmx1g", "-jar", "WebsterPOC-0.0.1-SNAPSHOT.jar"]
+ADD WebsterPOC-0.0.1-SNAPSHOT.jar app.jar
+ADD wrapper.sh wrapper.sh
+RUN bash -c 'chmod +x /wrapper.sh'
+RUN bash -c 'touch /app.jar'
+ENTRYPOINT ["/bin/bash", "/wrapper.sh"]
