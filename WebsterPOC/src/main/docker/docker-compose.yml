@@ -15,8 +15,8 @@ services:
     ports:
       - 8080:8080
     environment:
-      - DB_HOST=demo-mysql
+      - DB_URL=demo-mysql
       - DB_USER=dbuser
       - DB_PASSWORD=dbp4ss
-      - DB_NAME=webster_poc
+      - DB_SCHEMA=webster_poc
       - DB_PORT=3306
