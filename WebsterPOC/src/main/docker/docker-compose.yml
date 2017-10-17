@@ -1,0 +1,22 @@
+version: '3.1'
+
+services: 
+  demo-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=webster_poc
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=dbp4ss
+  spring-boot-jpa-docker-webapp:
+    image: websterpoc
+    depends_on:
+      - demo-mysql
+    ports:
+      - 8080:8080
+    environment:
+      - DB_HOST=demo-mysql
+      - DB_USER=dbuser
+      - DB_PASSWORD=dbp4ss
+      - DB_NAME=demo
+      - DB_PORT=3306
