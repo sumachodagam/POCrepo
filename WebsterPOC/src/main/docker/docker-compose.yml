@@ -8,7 +8,7 @@ services:
       - MYSQL_DATABASE=webster_poc
       - MYSQL_USER=dbuser
       - MYSQL_PASSWORD=dbp4ss
-  spring-boot-jpa-docker-webapp:
+  websterpoc-webapp:
     image: websterpoc
     depends_on:
       - demo-mysql
