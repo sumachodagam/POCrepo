@@ -113,12 +113,14 @@ public class POCInit implements CommandLineRunner{
 				sb.append(System.lineSeparator());
 				line = br.readLine();
 			}
+			password = sb.toString();
 			br.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("=---------password------->"+password);
 		return password;
 	}
 }
