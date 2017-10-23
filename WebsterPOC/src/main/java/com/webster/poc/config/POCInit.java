@@ -1,5 +1,10 @@
 package com.webster.poc.config;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.jms.ConnectionFactory;
 import javax.sql.DataSource;
 
@@ -30,7 +35,6 @@ import com.webster.poc.pojos.CustomerStatus;
 public class POCInit implements CommandLineRunner{
 
 	public static final String MAILBOX_TOPIC = "inboxTopic";
-	
 	
 	@Autowired
 	private Sender sender;
@@ -83,7 +87,7 @@ public class POCInit implements CommandLineRunner{
 		dataSource.setDriverClassName(dbDriverClassName);
 		dataSource.setUrl("jdbc:mysql://"+dbUrl+":"+dbPort+"/"+dbSchema);
 		dataSource.setUsername(dbUsername);
-		dataSource.setPassword(dbPassword);
+		dataSource.setPassword(readPassword(dbPassword));
 		return dataSource;
 	}
     @Override
@@ -97,4 +101,24 @@ public class POCInit implements CommandLineRunner{
         sender.send(MAILBOX_TOPIC, new CustomerStatus(1073, "Inactive"));
         Thread.sleep(5000);
     }
+    
+	private String readPassword(String path) {
+		String password = null;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			StringBuilder sb = new StringBuilder();
+			String line = br.readLine();
+			while (line != null) {
+				sb.append(line);
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return password;
+	}
 }

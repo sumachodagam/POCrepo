@@ -3,20 +3,28 @@ version: '3.1'
 services:
   demo-mysql:
     image: mysql:latest
+    secrets:
+      - dbp4ss
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=webster_poc
       - MYSQL_USER=dbuser
-      - MYSQL_PASSWORD=dbp4ss
+      - MYSQL_PASSWORD=/run/secrets/dbp4ss
   webapp:
     image: websterpoc
     depends_on:
       - demo-mysql
     ports:
       - 8080:8080
+    secrets:
+      - dbp4ss
     environment:
       - DB_URL=demo-mysql
       - DB_USER=dbuser
-      - DB_PASSWORD=dbp4ss
+      - DB_PASSWORD=/run/secrets/dbp4ss
       - DB_SCHEMA=webster_poc
       - DB_PORT=3306
+
+secrets:
+    dbp4ss:
+        external: True
