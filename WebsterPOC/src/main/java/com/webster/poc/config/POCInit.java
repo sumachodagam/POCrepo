@@ -87,7 +87,8 @@ public class POCInit implements CommandLineRunner{
 		dataSource.setDriverClassName(dbDriverClassName);
 		dataSource.setUrl("jdbc:mysql://"+dbUrl+":"+dbPort+"/"+dbSchema);
 		dataSource.setUsername(dbUsername);
-		dataSource.setPassword(readPassword(dbPassword));
+		//dataSource.setPassword(readPassword(dbPassword));
+		dataSource.setPassword(dbPassword);
 		return dataSource;
 	}
     @Override
